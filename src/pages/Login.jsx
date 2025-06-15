@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
+import './Login.css';
 
 export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -25,33 +26,35 @@ export default function Login() {
   };
 
   return (
-    <div className="container">
-      <h2>Iniciar Sesión</h2>
+    <div className="login-background">
+      <div className="login-container">
+        <h2 className="login-title">🚪 Iniciar Sesión</h2>
 
-      <label>Email</label>
-      <input
-        name="email"
-        type="email"
-        placeholder="correo@ejemplo.com"
-        onChange={handleChange}
-      />
+        <label>Email</label>
+        <input
+          name="email"
+          type="email"
+          placeholder="correo@ejemplo.com"
+          onChange={handleChange}
+        />
 
-      <label>Contraseña</label>
-      <input
-        name="password"
-        type="password"
-        placeholder="********"
-        onChange={handleChange}
-      />
+        <label>Contraseña</label>
+        <input
+          name="password"
+          type="password"
+          placeholder="********"
+          onChange={handleChange}
+        />
 
-      <button onClick={handleLogin}>Ingresar</button>
+        <button className="btn-login" onClick={handleLogin}>Ingresar</button>
 
-      <p style={{ marginTop: '1rem' }}>
-        ¿No tienes una cuenta?{' '}
-        <Link to="/registro" style={{ color: '#2563EB', textDecoration: 'underline' }}>
-          Regístrate aquí
-        </Link>
-      </p>
+        <p className="login-footer">
+          ¿No tienes una cuenta?{' '}
+          <Link to="/registro" className="registro-link">
+            Regístrate aquí
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

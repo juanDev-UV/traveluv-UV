@@ -1,0 +1,139 @@
+.buscar-cargas-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  background-color: #f1f5f9;
+  min-height: 100vh;
+  animation: fadeIn 0.8s ease;
+}
+
+.buscar-section,
+.publicar-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.titulo,
+.titulo-publicar {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #1e3a8a;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #f8fafc;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+.btn-buscar {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2563eb;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s ease;
+}
+
+.btn-buscar:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.03);
+}
+
+.lista-cargas {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.item-carga {
+  background: #eff6ff;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  color: #1e40af;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease;
+}
+
+.item-carga:hover {
+  background: #dbeafe;
+}
+
+.publicar-section p {
+  text-align: center;
+  color: #475569;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.button-carga {
+  display: block;
+  background-color: #1e40af;
+  color: white;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.button-carga:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.05);
+}
+
+/* Animación inicial */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .buscar-cargas-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .buscar-section,
+  .publicar-section {
+    max-width: 100%;
+  }
+}

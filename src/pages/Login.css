@@ -1,0 +1,123 @@
+/* Fondo dinámico */
+.login-background {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2563EB, #1E3A8A);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fondoFade 1.5s ease-out forwards;
+}
+
+/* Contenedor del login */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  animation: aparecerSuave 0.8s ease-out forwards;
+  transform: scale(0.95);
+  opacity: 0;
+}
+
+/* Título animado */
+.login-title {
+  text-align: center;
+  margin-bottom: 1.8rem;
+  color: #2563EB;
+  font-size: 1.8rem;
+  font-weight: bold;
+  animation: deslizarAbajo 0.6s ease-out;
+}
+
+/* Estilo campos */
+label {
+  display: block;
+  margin-top: 1rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  background: #F9FAFB;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #2563EB;
+  outline: none;
+}
+
+/* Botón animado */
+.btn-login {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2563EB;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s ease;
+}
+
+.btn-login:hover {
+  background-color: #1D4ED8;
+  transform: scale(1.03);
+}
+
+/* Texto inferior */
+.login-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #6B7280;
+}
+
+.registro-link {
+  color: #2563EB;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.registro-link:hover {
+  color: #1D4ED8;
+}
+
+/* Animaciones */
+@keyframes aparecerSuave {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes deslizarAbajo {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fondoFade {
+  from {
+    background: #000;
+    opacity: 0.5;
+  }
+  to {
+    background: linear-gradient(135deg, #2563EB, #1E3A8A);
+    opacity: 1;
+  }
+}

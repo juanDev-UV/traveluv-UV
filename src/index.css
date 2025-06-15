@@ -1,87 +1,100 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+:root {
+  --gray: rgba(0, 0, 0, 0.700);
+  --green: #16a085;
+  --blue: #2563EB;
+  --black: #444;
+  --light-color: #777;
+  --box-shadow: 0.5rem 0.5rem 0 rgba(59, 75, 211, 0.367);
+  --text-shadow: 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.2);
+  --border: 0.2rem solid var(--green);
+  --border-radius: 1.125rem
+  
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #F3F4F6;
-  color: #1F2937;
+* {
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-transform: none;
+  transition: all 0.2s ease-out;
+  text-decoration: none;
 }
 
-.container {
-  max-width: 600px;
-  margin: 2rem auto;
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 7rem;
+  scroll-behavior: smooth;
 }
 
-h2 {
-  color: #2563EB;
-  margin-bottom: 1rem;
+
+/* Estilos generales del footer */
+footer {
+  background-color: #000000;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-family: sans-serif;
 }
 
-input, select {
-  display: block;
-  width: 100%;
-  padding: 0.6rem;
-  margin-bottom: 1rem;
-  border: 1px solid #CBD5E1;
-  border-radius: 4px;
-  background: #fff;
+/* Estilos para los enlaces */
+footer a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease, transform 0.2s ease; /* Transición para color y transformación */
+}
+
+footer a:hover {
+  color: #aaa; /* Color gris claro al pasar el ratón */
+  transform: translateY(-2px); /* Ligero desplazamiento hacia arriba */
+}
+
+/* Estilos para el texto de derechos de autor */
+footer .copyright {
+  font-size: 14px;
+  color: #777;
+  margin-top: 10px;
+}
+
+/* Animación sutil al cargar la página */
+footer {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+canvas {
+  touch-action: none;
 }
 
 button {
-  background-color: #2563EB;
-  color: white;
-  padding: 0.6rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem; /* Ajusta el padding-left si es necesario */
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--blue);
+    cursor: pointer;
+    font-size: 1.8rem;
+    transition: background 0.3s ease, color 0.3s ease; /* Transición para hover */
 }
 
-button:hover {
-  background-color: #1D4ED8;
-}
 
-nav {
-  background-color: #2563EB;
-  padding: 1rem;
-  text-align: center;
-}
-
-nav a {
-  color: white;
-  margin: 0 1rem;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  background: #E0F2FE;
-  margin: 0.5rem 0;
-  padding: 1rem;
-  border-radius: 6px;
-}

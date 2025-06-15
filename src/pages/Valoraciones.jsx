@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
+import './Valoraciones.css';
 
 function Valoraciones() {
   const [vals, setVals] = useState([]);
@@ -10,15 +11,24 @@ function Valoraciones() {
   }, [id]);
 
   return (
-    <div className='container'>
-      <h2>Valoraciones Recibidas</h2>
-      <ul>
-        {vals.map((v, i) => (
-          <li key={i}>{v.Emisor}: {v.Calificacion} ⭐ - {v.Comentario}</li>
-        ))}
-      </ul>
+    <div className="valoraciones-container">
+      <h2 className="titulo">🌟 Valoraciones Recibidas</h2>
+
+      {vals.length === 0 ? (
+        <p className="mensaje-vacio">Aún no has recibido valoraciones.</p>
+      ) : (
+        <ul className="lista-valoraciones">
+          {vals.map((v, i) => (
+            <li key={i} className="valoracion-item">
+              <div className="emisor">🧑 {v.Emisor}</div>
+              <div className="calificacion">⭐ {v.Calificacion} / 5</div>
+              <div className="comentario">"{v.Comentario}"</div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
 
-export default Valoraciones
+export default Valoraciones;
