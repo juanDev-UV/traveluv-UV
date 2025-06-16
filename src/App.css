@@ -43,32 +43,4 @@ button:hover {
   background-color: #1D4ED8;
 }
 
-nav {
-  background-color: #2564eb;
-  padding: 2rem;
-  text-align: center;
-}
 
-nav a {
-  color: white;
-  margin: 0 2rem;
-  font-size: 1.5rem;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  background: #E0F2FE;
-  margin: 0.5rem 0;
-  padding: 1rem;
-  border-radius: 6px;
-}

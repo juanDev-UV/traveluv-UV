@@ -44,7 +44,8 @@
 }
 
 .btn-guardar,
-.btn-editar {
+.btn-editar,
+.btn-volver {
   display: inline-block;
   margin-top: 1.5rem;
   padding: 0.7rem 1.2rem;
@@ -62,6 +63,11 @@
 
 .btn-editar {
   background-color: #2563EB;
+  color: white;
+}
+
+.btn-volver {
+  background-color: #eb2525;
   color: white;
 }
 

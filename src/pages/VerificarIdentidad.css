@@ -1,5 +1,5 @@
 .verificacion-container {
-  max-width: 600px;
+  max-width: 900px;
   margin: 2rem auto;
   padding: 2rem;
   background: #ffffff;
@@ -8,30 +8,41 @@
   animation: fadeInUp 0.6s ease-out;
 }
 
-.titulo {
-  text-align: center;
-  color: #2563EB;
-  margin-bottom: 1rem;
-  font-size: 1.8rem;
-  animation: popIn 0.5s ease;
+.verificacion-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.instrucciones {
-  text-align: center;
-  color: #374151;
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
+.verificacion-info {
+  flex: 1 1 55%;
 }
 
 .imagen-guia {
-  text-align: center;
-  margin: 1rem 0;
+  flex: 1 1 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .imagen-guia img {
   max-width: 100%;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.titulo {
+  color: #2563EB;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  animation: popIn 0.5s ease;
+}
+
+.instrucciones {
+  color: #374151;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
 }
 
 label {
@@ -69,7 +80,6 @@ input[type='file'] {
   transform: translateY(-2px);
 }
 
-/* Animaciones */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -89,5 +99,12 @@ input[type='file'] {
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .verificacion-content {
+    flex-direction: column;
   }
 }

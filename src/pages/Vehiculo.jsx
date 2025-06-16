@@ -7,17 +7,18 @@ function Vehiculo() {
     const id_usuario = localStorage.getItem('user_id');
 
     const [vehiculo, setVehiculo] = useState(null);
+    const [idVehiculo, setIdVehiculo] = useState(null);
     const [form, setForm] = useState({ marca: '', modelo: '', matricula: '', capacidadAsientos: '', capacidadCarga: '' });
     const [modoEdicion, setModoEdicion] = useState(false);
 
     useEffect(() => {
-        if (tipo !== 'conductor') {
+        if (tipo !== '2') {
             alert('Solo los conductores pueden acceder a esta sección.');
             window.location.href = '/';
         } else {
             cargarVehiculo();
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const cargarVehiculo = async () => {
@@ -25,6 +26,7 @@ function Vehiculo() {
             const res = await api.get(`/vehiculos/usuario/${id_usuario}`);
             if (res.data) {
                 setVehiculo(res.data);
+                setIdVehiculo(res.data.ID_Vehiculo); // 👈 guardar el ID del vehículo
                 setForm({
                     marca: res.data.Marca,
                     modelo: res.data.Modelo,
@@ -51,6 +53,23 @@ function Vehiculo() {
             alert('Error al guardar vehículo');
         }
     };
+
+    const actualizarVehiculo = async () => {
+        try {
+            if (!idVehiculo) {
+                alert('No se encontró el ID del vehículo');
+                return;
+            }
+
+            await api.put(`/vehiculos/editar/${idVehiculo}`, form);
+            alert('Vehículo actualizado exitosamente');
+            cargarVehiculo();
+        } catch (err) {
+            console.error(err);
+            alert('Error al guardar vehículo');
+        }
+    };
+
 
     return (
         <div className="vehiculo-container">
@@ -83,6 +102,8 @@ function Vehiculo() {
                     <input name="capacidadCarga" type="number" value={form.capacidadCarga} onChange={handleChange} />
 
                     <button className="btn-guardar" onClick={guardarVehiculo}>Guardar Vehículo</button>
+                    <button className="btn-editar" onClick={actualizarVehiculo}>Editar Vehículo</button>
+                    <button onClick={() => setModoEdicion(false)} className="btn-volver">volver</button>
                 </div>
             )}
         </div>

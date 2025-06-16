@@ -1,25 +1,21 @@
-.reservas-container {
-  max-width: 600px;
-  margin: 2rem auto;
+/* Contenedor general con dos columnas */
+.section-reservas {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* Panel de reservas */
+.panel-reservas {
+  flex: 1;
+  min-width: 300px;
+  background: #f9fafb;
   padding: 2rem;
-  background: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.titulo {
-  text-align: center;
-  color: #2563EB;
-  margin-bottom: 2rem;
-  font-size: 1.8rem;
-  animation: popIn 0.5s ease;
-}
-
-.mensaje-vacio {
-  text-align: center;
-  font-style: italic;
-  color: #6B7280;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 .lista-reservas {
@@ -32,22 +28,85 @@
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 8px;
-  background: #F3F4F6;
+  background: #f3f4f6;
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .reserva-item:hover {
   transform: translateY(-2px);
-  background: #E0F2FE;
+  background: #e0f2fe;
 }
 
-.reserva-info {
-  color: #1F2937;
-  margin-bottom: 0.3rem;
+/* Panel del formulario de reserva */
+.panel-formulario {
+  flex: 1;
+  min-width: 300px;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.panel-formulario label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.panel-formulario input,
+.panel-formulario select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #f8fafc;
+  transition: border-color 0.3s ease;
+}
+
+.panel-formulario input:focus,
+.panel-formulario select:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+.panel-formulario button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2563eb;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s ease;
+}
+
+.panel-formulario button:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.03);
+}
+
+/* Título */
+.titulo {
+  text-align: center;
+  color: #2563eb;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  animation: popIn 0.5s ease;
+}
+
+/* Mensaje vacío */
+.mensaje-vacio {
+  text-align: center;
+  font-style: italic;
+  color: #6b7280;
+  margin-top: 2rem;
 }
 
 /* Animaciones */
-
 @keyframes fadeInUp {
   from {
     opacity: 0;

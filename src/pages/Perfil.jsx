@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react';
 import api from '../services/api';
-import './Perfil.css';
+import './Perfil.css'
+import { useNavigate } from 'react-router-dom';
 
 function Perfil() {
   const [perfil, setPerfil] = useState({});
   const [editando, setEditando] = useState(false);
   const [form, setForm] = useState({ nombre: '', email: '', password: '' });
   const id = localStorage.getItem('user_id');
+  const navigate = useNavigate();
+
+  const irVerificacion = () => {
+    navigate('/verificar');
+  }
 
   const logout = () => {
     localStorage.clear();
@@ -69,6 +75,7 @@ function Perfil() {
           <p><strong>Nombre:</strong> {perfil.Nombre}</p>
           <p><strong>Email:</strong> {perfil.Email}</p>
           <button className="btn-editar" onClick={() => setEditando(true)}>Editar Perfil</button>
+          <button className="btn-editar" onClick={irVerificacion}>Verificación</button>
         </div>
       )}
 

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -11,16 +12,32 @@ import MisReservas from './pages/MisReservas';
 import Perfil from './pages/Perfil';
 import Valoraciones from './pages/Valoraciones';
 import VerificarIdentidad from './pages/VerificarIdentidad';
-import "./App.css"
+import './App.css';
 import PrivateRoute from './components/PrivateRoute';
-// ...otros imports
+import Vehiculo from './pages/Vehiculo';
 
 function App() {
+  const [tipoUsuario, setTipoUsuario] = useState(localStorage.getItem('user_tipo'));
+
+  useEffect(() => {
+  const storedTipo = localStorage.getItem('user_tipo');
+  if (storedTipo !== tipoUsuario) setTipoUsuario(storedTipo);
+  }, [tipoUsuario]);
+
+  // Escucha cambios en localStorage para mantener sincronizado el tipo
+  useEffect(() => {
+    const actualizarTipo = () => {
+      setTipoUsuario(localStorage.getItem('user_tipo'));
+    };
+    window.addEventListener('storage', actualizarTipo);
+    return () => window.removeEventListener('storage', actualizarTipo);
+  }, []);
+
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar tipoUsuario={tipoUsuario} />
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setTipoUsuario={setTipoUsuario} />} />
         <Route path="/registro" element={<Register />} />
 
         <Route
@@ -88,6 +105,14 @@ function App() {
           }
         />
         <Route
+          path="/vehiculo"
+          element={
+            <PrivateRoute>
+              <Vehiculo />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/verificar"
           element={
             <PrivateRoute>
@@ -100,4 +125,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

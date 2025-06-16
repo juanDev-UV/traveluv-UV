@@ -1,16 +1,29 @@
 import { Link } from 'react-router-dom';
+import './Navbar.css'
 
-export default function Navbar() {
-
+function Navbar({ tipoUsuario }) {
   return (
-    <nav>
-      <Link to="/">Inicio</Link> | 
-      <Link to="/viajes">Viajes</Link> | 
-      <Link to="/cargas">Cargas</Link> | 
-      <Link to="/reservas">Mis Reservas</Link> | 
-      <Link to="/valoraciones">Valoraciones</Link> | 
-      <Link to="/verificar">Verificar Identidad</Link> | 
-      <Link to="/perfil">Perfil</Link> | 
+    <nav className="navbar">
+      <ul>
+        <li><Link to="/">Inicio</Link></li>
+
+        {tipoUsuario === '2' && (
+          <>
+            <li><Link to="/viajes">Viajes</Link></li>
+            <li><Link to="/cargas">Cargas</Link></li>
+            <li><Link to="/vehiculo">Vehículo</Link></li>
+          </>
+        )}
+
+        {tipoUsuario === '1' && (
+          <li><Link to="/reservas">Mis Reservas</Link></li>
+        )}
+
+        <li><Link to="/valoraciones">Valoraciones</Link></li>
+        <li><Link to="/perfil">Perfil</Link></li>
+      </ul>
     </nav>
   );
 }
+
+export default Navbar;

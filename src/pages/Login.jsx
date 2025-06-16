@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import './Login.css';
 
-export default function Login() {
+export default function Login({ setTipoUsuario }) {
   const [form, setForm] = useState({ email: '', password: '' });
+  const navigate = useNavigate();
 
   const handleChange = e =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -13,13 +14,16 @@ export default function Login() {
     try {
       const res = await api.post('/auth/login', form);
 
-      // Guardar token y datos del usuario en localStorage
+      // Guardar datos en localStorage
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user_id', res.data.id);
       localStorage.setItem('user_nombre', res.data.nombre);
       localStorage.setItem('user_tipo', res.data.tipo);
 
-      window.location.href = '/';
+      // Actualizar tipo de usuario en estado global
+      setTipoUsuario(res.data.tipo);
+      // Redireccionar
+      navigate('/');
     } catch (error) {
       alert(error.response?.data?.error || 'Credenciales incorrectas');
     }
