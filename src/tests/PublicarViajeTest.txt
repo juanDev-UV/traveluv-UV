@@ -1,0 +1,44 @@
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import PublicarViaje from '../pages/PublicarViaje';
+import api from '../services/api';
+
+jest.mock('../services/api', () => ({
+  post: jest.fn()
+}));
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({
+      status: 'OK',
+      results: [{ geometry: { location: { lat: 4.65, lng: -74.05 } } }]
+    })
+  })
+);
+
+describe('PublicarViaje', () => {
+  test('publica un viaje correctamente', async () => {
+    render(<PublicarViaje />);
+
+    fireEvent.change(screen.getByPlaceholderText(/terminal sur/i), { target: { value: 'Cali - Terminal Sur' } });
+    fireEvent.change(screen.getByPlaceholderText(/terminal norte/i), { target: { value: 'Medellín - Terminal Norte' } });
+    fireEvent.change(screen.getByLabelText(/fecha/i), { target: { value: '2025-06-18T10:00' } });
+    fireEvent.change(screen.getByPlaceholderText(/cupos/i), { target: { value: '4' } });
+    fireEvent.change(screen.getByPlaceholderText(/kilómetro/i), { target: { value: '500' } });
+    fireEvent.change(screen.getByPlaceholderText(/vehículo/i), { target: { value: '3' } });
+
+    fireEvent.click(screen.getByText(/publicar viaje/i));
+
+    await waitFor(() => {
+      expect(api.post).toHaveBeenCalledWith('/viajes/crear', expect.objectContaining({
+        Origen: 'Cali - Terminal Sur',
+        Destino: 'Medellín - Terminal Norte',
+        FechaHoraSalida: '2025-06-18T10:00',
+        CuposDisponibles: '4',
+        PrecioKM: '500',
+        ID_Vehiculo: '3',
+        CoordenadasOrigenLat: 4.65,
+        CoordenadasOrigenLng: -74.05
+      }));
+    });
+  });
+});
