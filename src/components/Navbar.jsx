@@ -12,15 +12,20 @@ function Navbar({ tipoUsuario }) {
             <li><Link to="/viajes">Viajes</Link></li>
             <li><Link to="/cargas">Cargas</Link></li>
             <li><Link to="/vehiculo">Vehículo</Link></li>
+            <li><Link to="/valoraciones">Valoraciones</Link></li>
+            <li><Link to="/perfil">Perfil</Link></li>
           </>
         )}
 
         {tipoUsuario === '1' && (
+          <>
           <li><Link to="/reservas">Mis Reservas</Link></li>
+          <li><Link to="/valoraciones">Valoraciones</Link></li>
+          <li><Link to="/perfil">Perfil</Link></li>
+          </>
         )}
 
-        <li><Link to="/valoraciones">Valoraciones</Link></li>
-        <li><Link to="/perfil">Perfil</Link></li>
+
       </ul>
     </nav>
   );
