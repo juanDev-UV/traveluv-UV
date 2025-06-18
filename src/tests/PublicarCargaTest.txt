@@ -1,0 +1,48 @@
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import PublicarCarga from '../pages/PublicarCarga';
+import api from '../services/api';
+
+jest.mock('../services/api', () => ({
+  post: jest.fn()
+}));
+
+// Mock de geocodificación
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({
+      status: 'OK',
+      results: [
+        { geometry: { location: { lat: 3.45, lng: -76.53 } } }
+      ]
+    })
+  })
+);
+
+describe('PublicarCarga', () => {
+  test('publica una carga correctamente', async () => {
+    render(<PublicarCarga />);
+
+    fireEvent.change(screen.getByPlaceholderText(/15/i), { target: { value: '20' } }); // Peso
+    fireEvent.change(screen.getByPlaceholderText(/40x40x60/i), { target: { value: '50x50x50 cm' } }); // Dimensiones
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Sí' } }); // Fragil
+    fireEvent.change(screen.getByPlaceholderText(/COP/i), { target: { value: '30000' } }); // Precio
+    fireEvent.change(screen.getByPlaceholderText(/vehículo/i), { target: { value: '7' } }); // Vehiculo
+
+    // Simular ubicación directamente (ya que MapInput usa props)
+    fireEvent.click(screen.getByText(/publicar carga/i), {
+      button: 0
+    });
+
+    await waitFor(() => {
+      expect(api.post).toHaveBeenCalledWith('/cargas/crear', expect.objectContaining({
+        Peso: '20',
+        Dimensiones: '50x50x50 cm',
+        Fragil: 'Sí',
+        PrecioOfrecido: '30000',
+        ID_Vehiculo: '7',
+        CoordenadasRecogidaLat: 3.45,
+        CoordenadasRecogidaLng: -76.53
+      }));
+    });
+  });
+});
