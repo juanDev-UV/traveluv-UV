@@ -51,4 +51,8 @@ function BuscarCargas() {
   );
 }
 
+
+
+
+
 export default BuscarCargas;
